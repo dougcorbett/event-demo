@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { Router, RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -12,7 +12,15 @@ import { SpeakerEditComponent } from './speaker-edit/speaker-edit.component';
 import { SpeakerDetailComponent } from './speaker-detail/speaker-detail.component';
 import { SpeakerThumbnailComponent } from './speaker-thumbnail/speaker-thumbnail.component';
 import { FooterComponent } from './footer/footer.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
+const appRoutes: Routes = [
+  { pathMatch: 'full',  path: '', component: HomeComponent },
+  { pathMatch: 'full',  path: 'speakers', component: SpeakerListComponent },
+  { pathMatch: 'full',  path: 'contact', component: ContactUsComponent },
+  { pathMatch: 'full',  path: '**', component: PageNotFoundComponent }
+]
 
 @NgModule({
   declarations: [
@@ -25,10 +33,13 @@ import { FooterComponent } from './footer/footer.component';
     SpeakerEditComponent,
     SpeakerDetailComponent,
     SpeakerThumbnailComponent,
-    FooterComponent
+    FooterComponent,
+    PageNotFoundComponent,
+    ContactUsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
