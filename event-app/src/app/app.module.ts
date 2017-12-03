@@ -15,6 +15,9 @@ import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 
+import { DataService } from './services/data.service';
+import { Speaker } from './models/speaker';
+
 const appRoutes: Routes = [
   { pathMatch: 'full',  path: '', component: HomeComponent },
   { pathMatch: 'full',  path: 'speakers', component: SpeakerListComponent },
@@ -41,7 +44,9 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
