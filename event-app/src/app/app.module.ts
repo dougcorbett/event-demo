@@ -21,6 +21,9 @@ import { Speaker } from './models/speaker';
 const appRoutes: Routes = [
   { pathMatch: 'full',  path: '', component: HomeComponent },
   { pathMatch: 'full',  path: 'speakers', component: SpeakerListComponent },
+  { pathMatch: 'full',  path: 'speakers/new', component: SpeakerAddComponent },
+  { pathMatch: 'full',  path: 'speakers/:id', component: SpeakerDetailComponent },
+  { pathMatch: 'full',  path: 'speakers/:id/edit', component: SpeakerEditComponent },
   { pathMatch: 'full',  path: 'contact', component: ContactUsComponent },
   { pathMatch: 'full',  path: '**', component: PageNotFoundComponent }
 ]

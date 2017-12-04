@@ -1,3 +1,22 @@
-<p>
-  speaker-detail works!
-</p>
+<h1>Speaker</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+        <img class="img-responsive center-block" src="{{ imageURL + speaker.photo }}">
+    </div>
+  
+    <div class="col-9">
+        <span class="speakerName">{{ speaker.firstName }} {{ speaker.lastName }}</span>
+        <div style="float:right;">
+            <a class="btn btn-warning" href="/speakers/{{ speaker.id }}/edit">Edit</a>
+            <!-- <button class="btn btn-warning" (click)="edit(speaker.id)">Edit</button>
+             -->
+            <button class="btn btn-danger" routerLink="" (click)="delete(speaker.id)">Delete</button>
+        </div> <br/>
+        <span class="speakerTitleAndCompany">{{ speaker.title }} | {{ speaker.company }}</span> 
+        <br/><br />
+        <p>{{ speaker.biography }}</p>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,10 @@
-import { Session } from '../models/session';
+export class Session{
+    title:string;
+    description:string;
+}
 
-export interface Speaker{
-    id:number,
+export class Speaker{
+    id:number;
     firstName:string;
     lastName:string;
     title?:string;

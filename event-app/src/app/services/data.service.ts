@@ -8,6 +8,11 @@ export class DataService {
 
   constructor() 
   { 
+    
+  }
+
+  seedSpeakers() 
+  {
     this.speakers = [
       { 
         id: 1,
@@ -17,7 +22,7 @@ export class DataService {
         company: 'Springfield Nuclear Power Plant',
         twitter: '',
         photo: 'Homer_Simpson_200x200.jpg',
-        biography: '',
+        biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam interdum suscipit felis, a mattis ex pulvinar ac. Sed efficitur facilisis nibh, a fringilla quam dapibus eu. Nunc tellus lectus, viverra at ante laoreet, gravida pulvinar massa. Maecenas vestibulum sit amet metus eget vehicula. Mauris id quam quam. Donec eu porttitor massa. Proin nisi nisi, vehicula id quam in, gravida dignissim urna. Donec malesuada sed justo vel pretium. Aenean posuere convallis lorem, eu porta ipsum dignissim quis. Nam lorem erat, hendrerit in porta in, finibus id neque.',
         sessions: []
       },
       {
@@ -28,7 +33,7 @@ export class DataService {
         company: 'CIA',
         twitter: '',
         photo: 'Marge_Simpson_200x200.jpg',
-        biography: '',
+        biography: 'Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus ut ultrices neque. In non rutrum enim. Nunc placerat rutrum nulla non luctus. Nulla facilisi. Sed est velit, iaculis lobortis ligula ut, molestie vestibulum dolor. Suspendisse gravida ullamcorper nunc, ac elementum lorem consectetur quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam consectetur purus sit amet velit convallis ultricies. Sed eu nunc purus. Sed pellentesque, dolor quis dictum auctor, tellus nisl congue tellus, vitae suscipit mi mi vitae nunc. Nulla feugiat libero tincidunt aliquet auctor. Donec luctus dapibus elementum. Proin risus augue, hendrerit a semper sed, ullamcorper quis ligula.',
         sessions: []
       },
       { 
@@ -39,7 +44,7 @@ export class DataService {
         company: 'Simpson Family Household',
         twitter: '',
         photo: 'Bart_Simpson_200x200.jpg',
-        biography: '',
+        biography: 'Etiam tincidunt dolor nulla, sit amet vestibulum lectus feugiat et. Aenean quis vulputate tortor, eget ornare diam. Aenean porta sollicitudin quam, vitae sodales mi convallis eleifend. Vestibulum id auctor ipsum. Suspendisse malesuada nisl in imperdiet tempus. Maecenas sit amet erat posuere orci scelerisque consectetur. In quis purus ac sapien tincidunt blandit. Praesent nec quam gravida mauris molestie sodales ac et leo. Praesent eleifend lacinia nisl, id varius mi bibendum imperdiet. Nunc ut massa est. Curabitur augue lectus, luctus vitae mi et, fringilla feugiat urna. Vestibulum dolor massa, aliquet nec ultrices id, ornare nec orci. Ut tincidunt augue ut aliquam bibendum.',
         sessions: []
       },
       {
@@ -50,7 +55,7 @@ export class DataService {
         company: 'Procter & Gamble',
         twitter: '',
         photo: 'Grandpa_Simpson_200x200.jpg',
-        biography: '',
+        biography: 'Vivamus euismod justo tellus, eget pulvinar lacus blandit id. Aliquam posuere ex et diam eleifend, eget dictum orci varius. Pellentesque sit amet justo ultricies, efficitur risus in, ultricies lectus. Nam in elementum est, id mattis mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie purus mauris, at efficitur enim volutpat eget. Pellentesque dapibus ligula at neque faucibus, et egestas ipsum luctus. Aliquam dui magna, vestibulum nec ipsum nec, sodales pulvinar leo. Nullam hendrerit mollis nisi, quis viverra augue sagittis et. Maecenas sed vulputate nibh, vel scelerisque sem. Donec in elit non urna imperdiet feugiat eget sit amet turpis. Aenean massa neque, fermentum at aliquam sodales, feugiat quis dui. Etiam pulvinar purus commodo elit cursus, et auctor nulla auctor.',
         sessions: []
       },
       { 
@@ -61,7 +66,7 @@ export class DataService {
         company: 'Simpson Family Household',
         twitter: '',
         photo: 'Lisa_Simpson_200x200.jpg',
-        biography: '',
+        biography: 'Nam at ligula sit amet purus imperdiet feugiat. Duis semper et sem sit amet blandit. In tincidunt arcu nisi. Vivamus lacinia nibh eu dui varius pharetra et non nisi. Maecenas dapibus quis quam varius tempus. Aenean suscipit ultrices nisl, ac luctus massa pharetra quis. Aliquam auctor ipsum a orci sodales, non rutrum mi semper. Phasellus scelerisque, ex in egestas auctor, magna turpis aliquam justo, quis facilisis magna dolor a diam. Phasellus elementum gravida eros, vitae dictum sapien aliquam sit amet. Duis mattis erat hendrerit neque malesuada, vitae accumsan urna dapibus. Donec eget mi dictum, fringilla eros sit amet, finibus urna. Fusce mollis commodo commodo. Nunc id rutrum magna.',
         sessions: []
       },
       {
@@ -72,15 +77,61 @@ export class DataService {
         company: 'Golden Nugget Casino',
         twitter: '',
         photo: 'Maggie_Simpson_200x200.jpg',
-        biography: '',
+        biography: 'Sed consectetur arcu efficitur ligula volutpat, eget congue eros ullamcorper. Nulla pulvinar lacus luctus velit imperdiet, eu condimentum tortor fringilla. Morbi sit amet viverra quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce sit amet enim nec eros commodo vestibulum placerat sit amet nunc. Maecenas tempus diam id ex elementum aliquet. Duis semper lacinia porttitor. Nullam scelerisque ligula ut malesuada dapibus. Curabitur eros neque, pulvinar quis pulvinar ac, rutrum vitae lorem. Praesent blandit semper sem, eu accumsan nibh pharetra quis. Curabitur a ante ut odio egestas ullamcorper vitae id tortor. Mauris aliquam, lectus vitae laoreet suscipit, sem elit finibus quam, id sodales arcu libero ac tellus. Donec a magna ac ex vestibulum finibus ac eu libero. Duis interdum ultrices sem, vitae hendrerit erat rhoncus nec.',
         sessions: []
       }
     ]
+    localStorage.setItem('speakers', JSON.stringify(this.speakers));
   }
 
   getSpeakers(): Speaker[] 
   {
+    if (localStorage.getItem('speakers') === null) { this.speakers = []; }
+    else { this.speakers = JSON.parse(localStorage.getItem('speakers')); }
     return this.speakers;
+  }
+
+  getSpeaker(id:number): Speaker
+  {
+    let speakers:Speaker[] = this.getSpeakers();
+
+    //if (this.speakers === null) { this.speakers = this.getSpeakers(); }
+    //console.log(speakers);
+
+    for(let i = 0; i < speakers.length; i++)
+    {
+      console.log(speakers[i],id);
+      if(speakers[i].id == id) { 
+        
+        return speakers[i]; 
+      }
+    };
+    console.log('returning null');
+    return null;
+  }
+
+  addSpeaker(speaker:Speaker){
+
+    this.speakers.unshift(speaker);
+
+    let speakers;
+
+    if(localStorage.getItem('speakers') === null) { speakers = []; }
+    else { speakers = JSON.parse(localStorage.getItem('speakers')); }
+
+    speakers.unshift(speaker);
+    localStorage.setItem('speakers', JSON.stringify(speakers));
+  }
+
+  removeSpeaker(speaker:Speaker) {
+    for(let i = 0; i < this.speakers.length; i++)
+    {
+      if(this.speakers[i].id === speaker.id) 
+      {
+        this.speakers.splice(i, 1);
+        localStorage.setItem('speakers', JSON.stringify(this.speakers));
+      }
+    };
   }
 
 }
