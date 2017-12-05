@@ -9,7 +9,7 @@
     <div class="col-9">
         <span class="speakerName">{{ speaker.firstName }} {{ speaker.lastName }}</span>
         <div style="float:right;">
-            <a class="btn btn-warning" href="/speakers/{{ speaker.id }}/edit">Edit</a>
+            <a class="btn btn-warning" [routerLink]="['/speakers/' + speaker.id + '/edit']">Edit</a>
             <!-- <button class="btn btn-warning" (click)="edit(speaker.id)">Edit</button>
              -->
             <button class="btn btn-danger" (click)="delete(speaker.id)">Delete</button>

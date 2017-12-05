@@ -121,13 +121,10 @@ export class DataService {
 
     for(let i = 0; i < speakers.length; i++)
     {
-      console.log(speakers[i],id);
       if(speakers[i].id == id) { 
-        
         return speakers[i]; 
       }
     };
-    console.log('returning null');
     return null;
   }
 
@@ -170,6 +167,38 @@ export class DataService {
         localStorage.setItem('speakers', JSON.stringify(speakers));
       }
     };
+  }
+
+  updateSpeaker(id:number, speaker:Speaker){
+    
+    let speakers;
+
+    if(localStorage.getItem('speakers') === null) { speakers = []; }
+    else { speakers = JSON.parse(localStorage.getItem('speakers')); }
+
+    let index = this.getIndexForId(id, speakers);
+
+    if (index == -1) {
+      speakers.unshift(speaker);
+    } else {
+      Object.assign(speakers[index], speaker);
+    }
+    
+    localStorage.setItem('speakers', JSON.stringify(speakers));
+  }
+
+  getIndexForId(id:number, speakers:Speaker[]): number 
+  {
+    let result = -1;
+
+    for(let i = 0; i < speakers.length; i++) 
+    {
+      if(speakers[i].id == id) {
+        result = i;
+        break;
+      }
+    }
+    return result;
   }
 
 }
