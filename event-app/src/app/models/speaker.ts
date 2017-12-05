@@ -14,5 +14,7 @@ export class Speaker{
     twitter?:string;
     photo?:string;
     biography:string;
-    sessions?:Session [];
+    sessionName:string;
+    sessionDescription:string;
+    //sessions?:Session [];
 }

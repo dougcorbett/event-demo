@@ -17,6 +17,12 @@
         <span class="speakerTitleAndCompany">{{ speaker.title }} | {{ speaker.company }}</span> 
         <br/><br />
         <p>{{ speaker.biography }}</p>
+
+        <div *ngIf="speaker.sessionName != ''">
+            <h4>Session</h4>
+            <p><strong>Name:</strong> {{ speaker.sessionName }}</p>
+            <p><strong>Description:</strong> {{ speaker.sessionDescription }}</p>
+        </div>
     </div>
   </div>
 </div>
