@@ -18,7 +18,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ContactUsComponent } from './contact-us/contact-us.component';
 
 import { DataService } from './services/data.service';
+import { ReactiveDataService } from './services/reactive-data.service';
+
 import { Speaker } from './models/speaker';
+import { ReactiveSpeakerListComponent } from './reactive-speaker-list/reactive-speaker-list.component';
+import { ReactiveSpeakerAddComponent } from './reactive-speaker-add/reactive-speaker-add.component';
+import { ReactiveSpeakerEditComponent } from './reactive-speaker-edit/reactive-speaker-edit.component';
+import { ReactiveSpeakerDetailComponent } from './reactive-speaker-detail/reactive-speaker-detail.component';
+import { ReactiveSpeakerThumbnailComponent } from './reactive-speaker-thumbnail/reactive-speaker-thumbnail.component';
 
 const appRoutes: Routes = [
   { pathMatch: 'full',  path: '', component: HomeComponent },
@@ -26,6 +33,8 @@ const appRoutes: Routes = [
   { pathMatch: 'full',  path: 'speakers/new', component: SpeakerAddComponent },
   { pathMatch: 'full',  path: 'speakers/:id', component: SpeakerDetailComponent },
   { pathMatch: 'full',  path: 'speakers/:id/edit', component: SpeakerEditComponent },
+  { pathMatch: 'full',  path: 'reactive-speakers', component: ReactiveSpeakerListComponent },
+  { pathMatch: 'full',  path: 'reactive-speakers/:id', component: ReactiveSpeakerDetailComponent },
   { pathMatch: 'full',  path: 'contact', component: ContactUsComponent },
   { pathMatch: 'full',  path: '**', component: PageNotFoundComponent }
 ]
@@ -43,7 +52,12 @@ const appRoutes: Routes = [
     SpeakerThumbnailComponent,
     FooterComponent,
     PageNotFoundComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    ReactiveSpeakerListComponent,
+    ReactiveSpeakerAddComponent,
+    ReactiveSpeakerEditComponent,
+    ReactiveSpeakerDetailComponent,
+    ReactiveSpeakerThumbnailComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +66,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    DataService
+    DataService,
+    ReactiveDataService
   ],
   bootstrap: [AppComponent]
 })

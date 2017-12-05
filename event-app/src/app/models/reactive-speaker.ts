@@ -1,9 +1,9 @@
-export class Session{
+export class ReactiveSession{
     title:string;
     description:string;
 }
 
-export class Speaker{
+export class ReactiveSpeaker{
     id:number;
     firstName:string;
     lastName:string;
@@ -14,6 +14,5 @@ export class Speaker{
     twitter?:string;
     photo?:string;
     biography:string;
-    sessionName:string;
-    sessionDescription:string;
+    sessions?:ReactiveSession [];
 }

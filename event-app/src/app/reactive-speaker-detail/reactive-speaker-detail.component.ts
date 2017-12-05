@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from "@angular/router"
 
-import { DataService } from '../services/data.service';
-import { Speaker } from '../models/speaker';
+import { ReactiveDataService } from '../services/reactive-data.service';
+import { ReactiveSpeaker } from '../models/reactive-speaker';
 
 @Component({
   selector: 'app-speaker-detail',
-  templateUrl: './speaker-detail.component.html',
-  styleUrls: ['./speaker-detail.component.css']
+  templateUrl: './reactive-speaker-detail.component.html',
+  styleUrls: ['./reactive-speaker-detail.component.css']
 })
-export class SpeakerDetailComponent implements OnInit {
+export class ReactiveSpeakerDetailComponent implements OnInit {
 
-  speaker: Speaker;
+  speaker: ReactiveSpeaker;
   imageURL:string = '/assets/photos/';
 
   constructor(
-    public dataService:DataService,
+    public dataService:ReactiveDataService,
     private route:ActivatedRoute, 
     private router:Router
   ) { 
@@ -30,7 +30,7 @@ export class SpeakerDetailComponent implements OnInit {
   delete(id:number) {
     if(confirm("Are you sure you want to delete " + this.speaker.firstName + " " + this.speaker.lastName + "?")){
       this.dataService.removeSpeaker(id);
-      this.router.navigate(['speakers'])
+      this.router.navigate(['reactive-speakers'])
     }
   }
 }
