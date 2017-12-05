@@ -8,6 +8,8 @@ export class Speaker{
     firstName:string;
     lastName:string;
     title?:string;
+    email?:string;
+    phone:string;    
     company?:string;
     twitter?:string;
     photo?:string;

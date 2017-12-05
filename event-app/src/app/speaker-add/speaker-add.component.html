@@ -1,11 +1,214 @@
-<h1>Add Speaker</h1>
 
-<div class="container">
-  <div class="row">
-
-    <form>
-   
-    </form>
-   
+<div class="row">
+  <div class="col-6">
+    <a href="#" routerLink="/speakers" class="btn btn-link">
+      <i class="fa fa-arrow-circle-o-left"></i> Back
+    </a>
+  </div>
+  <div class="col-6">
+    
   </div>
 </div>
+
+<div class="card">
+  <div class="card-header bg-dark text-light">
+      Add Speaker
+  </div>
+  <div class="card-body">
+
+    <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="firstName">First Name</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': speakerFirstName.errors?.required && speakerFirstName.touched || 
+                  speakerFirstName.errors?.minlength }"
+                  [(ngModel)]="speaker.firstName"
+                  name="firstName"
+                  #speakerFirstName="ngModel"
+                  minlength="2"
+                  required
+                  placeholder="First Name (required)" />
+          <div *ngIf="speakerFirstName.errors?.required && speakerFirstName.touched" class="invalid-feedback">
+            First name is required.
+          </div>
+          <div *ngIf="speakerFirstName.errors?.minlength && speakerFirstName.touched" class="invalid-feedback">
+            First name must be at least two characters.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="lastName">Last Name</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': speakerLastName.errors?.required && speakerLastName.touched || 
+                  speakerLastName.errors?.minlength }"
+                  [(ngModel)]="speaker.lastName"
+                  name="lastName"
+                  #speakerLastName="ngModel"
+                  minlength="2"
+                  required
+                  placeholder="Last Name (required)" />
+          <div *ngIf="speakerLastName.errors?.required && speakerLastName.touched" class="invalid-feedback">
+            Last name is required.
+          </div>
+          <div *ngIf="speakerLastName.errors?.minlength && speakerLastName.touched" class="invalid-feedback">
+            Last name must be at least two characters.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="email">Email</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': speakerEmail.errors?.required && speakerEmail.touched || 
+                  speakerEmail.errors?.pattern }"
+                  [(ngModel)]="speaker.email"
+                  name="email"
+                  #speakerEmail="ngModel"
+                  required
+                  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                  placeholder="Email (required)" />
+          <div *ngIf="speakerEmail.errors?.required && speakerEmail.touched" class="invalid-feedback">
+            Email is required.
+          </div>
+          <div *ngIf="speakerEmail.errors?.pattern && speakerEmail.touched" class="invalid-feedback">
+            Email is invalid.
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="phone">Phone</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': speakerPhone.errors?.required && speakerPhone.touched || 
+                  speakerPhone.errors?.minlength }"
+                  [(ngModel)]="speaker.phone"
+                  name="phone"
+                  #speakerPhone="ngModel"
+                  required
+                  minlength="10"
+                  placeholder="Phone (required)" />
+          <div *ngIf="speakerPhone.errors?.required && speakerPhone.touched" class="invalid-feedback">
+            Phone is required.
+          </div>
+          <div *ngIf="speakerPhone.errors?.minlength && speakerPhone.touched" class="invalid-feedback">
+            Phone must be at least 10 characters.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="title">Title</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  [(ngModel)]="speaker.title"
+                  name="title"
+                  #speakerTitle="ngModel"
+                  placeholder="Title" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="company">Company</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  [(ngModel)]="speaker.company"
+                  name="company"
+                  #speakerCompany="ngModel"
+                  placeholder="Company" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="biography">Bio</label>
+        <div class="col-md-8">
+          <textarea class="form-control"
+                    [(ngModel)]="speaker.biography"
+                    name="biography"
+                    #speakerBiography="ngModel"
+                    placeholder="Biography"
+                    rows="5">
+
+          </textarea>
+
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- <div class="form-group">
+        <label class="col-md-2 control-label" for="sessionName">Session Name</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': speakerSessionName.errors?.required && speakerSessionName.touched || 
+                  speakerSessionName.errors?.minlength }"
+                  [(ngModel)]="speaker.sessionName"
+                  name="sessionName"
+                  #speakerSessionName="ngModel"
+                  minlength="2"
+                  required
+                  placeholder="Session Name (required)" />
+          <div *ngIf="speakerSessionName.errors?.required && speakerSessionName.touched" class="invalid-feedback">
+            Session name is required.
+          </div>
+          <div *ngIf="speakerSessionName.errors?.minlength && speakerSessionName.touched" class="invalid-feedback">
+            Session name must be at least two characters.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="sessionDescription">Session Description</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': speakerSessionDescription.errors?.required && speakerSessionDescription.touched || 
+                  speakerSessionDescription.errors?.minlength }"
+                  [(ngModel)]="speaker.sessionDescription"
+                  name="sessionDescription"
+                  #speakerSessionDescription="ngModel"
+                  minlength="2"
+                  required
+                  placeholder="Session Description (required)" />
+          <div *ngIf="speakerSessionDescription.errors?.required && speakerSessionDescription.touched" class="invalid-feedback">
+            Session description is required.
+          </div>
+          <div *ngIf="speakerSessionDescription.errors?.minlength && speakerSessionDescription.touched" class="invalid-feedback">
+            Session description must be at least two characters.
+          </div>
+        </div>
+      </div> -->
+
+      <!-- <button class="btn btn-primary"
+          type="submit"
+          [disabled]="!customerForm.valid">
+          Save
+      </button> -->
+
+      <input type="submit" value="Submit" class="btn btn-primary btn-block" [disabled]="!f.valid">
+      
+    </form>
+
+  </div>
+</div>
+    
+  
+
+<br>Dirty: {{ f?.dirty }} 
+<br>Touched: {{ f?.touched }}
+<br>Valid: {{ f?.valid }}
+<br>Value: {{ f?.value | json }}
+<br>Sessions: {{ sessions?.get('0.title1')?.value }}

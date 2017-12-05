@@ -29,7 +29,8 @@ export class SpeakerDetailComponent implements OnInit {
 
   delete(id:number) {
     if(confirm("Are you sure you want to delete " + this.speaker.firstName + " " + this.speaker.lastName + "?")){
-      console.log('delete');
+      this.dataService.removeSpeaker(id);
+      this.router.navigate(['speakers'])
     }
   }
 
