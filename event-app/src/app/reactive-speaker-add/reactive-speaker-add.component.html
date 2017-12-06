@@ -1,3 +1,186 @@
-<p>
-  reactive-speaker-add works!
-</p>
+<div class="row">
+  <div class="col-6">
+    <a href="#" routerLink="/speakers" class="btn btn-link">
+      <i class="fa fa-arrow-circle-o-left"></i> Back
+    </a>
+  </div>
+  <div class="col-6">
+    
+  </div>
+</div>
+  
+<div class="card">
+  <div class="card-header bg-dark text-light">
+      Add Speaker
+  </div>
+  <div class="card-body">
+
+    <form novalidate [formGroup]="speakerForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="firstName">First Name</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': speakerForm.get('firstName').errors?.required && speakerForm.get('firstName').touched || 
+                  speakerForm.get('firstName').errors?.minlength }"
+                  formControlName="firstName"
+                  placeholder="First Name (required)" />
+          <div *ngIf="speakerForm.get('firstName').errors?.required && speakerForm.get('firstName').touched" class="invalid-feedback">
+            First name is required.
+          </div>
+          <div *ngIf="speakerForm.get('firstName').errors?.minlength && speakerForm.get('firstName').touched" class="invalid-feedback">
+            First name must be at least two characters.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="lastName">Last Name</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': speakerForm.get('lastName').errors?.required && speakerForm.get('lastName').touched || 
+                  speakerForm.get('lastName').errors?.minlength }"
+                  formControlName="lastName"
+                  placeholder="Last Name (required)" />
+          <div *ngIf="speakerForm.get('lastName').errors?.required && speakerForm.get('lastName').touched" class="invalid-feedback">
+            Last name is required.
+          </div>
+          <div *ngIf="speakerForm.get('lastName').errors?.minlength && speakerForm.get('lastName').touched" class="invalid-feedback">
+            Last name must be at least two characters.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label class="col-md-4 control-label">Notification Preference</label>
+          <div class="col-md-8">
+              <label class="radio-inline">
+                <input type="radio" 
+                       value="email" 
+                       formControlName="notification">Email
+              </label>
+              <label class="radio-inline">
+                <input type="radio" 
+                       value="phone" 
+                       formControlName="notification">Phone
+              </label>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="email">Email</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': speakerForm.get('email').errors?.required && speakerForm.get('email').touched || 
+                  speakerForm.get('email').errors?.pattern }"
+                  formControlName="email"
+                  placeholder="Email (required)" />
+          <div *ngIf="speakerForm.get('email').errors?.required && speakerForm.get('email').touched" class="invalid-feedback">
+            Email is required.
+          </div>
+          <div *ngIf="speakerForm.get('email').errors?.pattern && speakerForm.get('email').touched" class="invalid-feedback">
+            Email is invalid.
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="phone">Phone</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': speakerForm.get('phone').errors?.required && speakerForm.get('phone').touched || 
+                  speakerForm.get('phone').errors?.minlength }"
+                  formControlName="phone"
+                  placeholder="Phone (required)" />
+          <div *ngIf="speakerForm.get('phone').errors?.required && speakerForm.get('phone').touched" class="invalid-feedback">
+            Phone is required.
+          </div>
+          <div *ngIf="speakerForm.get('phone').errors?.minlength && speakerForm.get('phone').touched" class="invalid-feedback">
+            Phone must be at least 10 characters.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="title">Title</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  formControlName="title"
+                  placeholder="Title" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="company">Company</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  formControlName="company"
+                  placeholder="Company" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="biography">Bio</label>
+        <div class="col-md-8">
+          <textarea class="form-control"
+                    formControlName="biography"
+                    placeholder="Biography"
+                    rows="5">
+
+          </textarea>
+
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- <div class="form-group">
+        <label class="col-md-2 control-label" for="sessionName">Session Name</label>
+        <div class="col-md-8">
+          <input  type="text"
+                  class="form-control"
+                  formControlName="sessionName"
+                  placeholder="Session Name" />
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="sessionDescription">Session Description</label>
+        <div class="col-md-8">
+            <textarea class="form-control"
+                      formControlName="sessionDescription"
+                      placeholder="Session Description"
+                      rows="5">
+
+            </textarea>
+        </div>
+      </div> -->
+
+      <input type="submit" value="Submit" class="btn btn-primary" [disabled]="!speakerForm.valid">
+
+    </form>
+
+
+
+  </div>
+</div>
+<br />
+<div class="row">
+  <p>
+    <button (click)="addTestData()" class="btn btn-primary">Test Data</button>
+    <button (click)="updateTestData()" class="btn btn-primary">Update Data</button>
+  </p>
+</div>
+
+<br>Dirty: {{ speakerForm?.dirty }} 
+<br>Touched: {{ speakerForm?.touched }}
+<br>Valid: {{ speakerForm?.valid }}
+<br>Value: {{ speakerForm?.value | json }}

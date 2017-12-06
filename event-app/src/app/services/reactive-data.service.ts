@@ -20,6 +20,7 @@ export class ReactiveDataService {
         lastName: 'Simpson',
         title: 'Nuclear Safety Inspector',
         company: 'Springfield Nuclear Power Plant',
+        notification: 'email',
         email: 'doh@gmail.com',
         phone: '776-333-2993',
         twitter: '',
@@ -33,6 +34,7 @@ export class ReactiveDataService {
         lastName: 'Simpson',
         title: 'Secret Agent',
         company: 'CIA',
+        notification: 'email',
         email: 'marge123@gmail.com',
         phone: '888-333-4343',
         twitter: '',
@@ -49,6 +51,7 @@ export class ReactiveDataService {
         lastName: 'Simpson',
         title: 'Smart Alec Extraordinaire',
         company: 'Simpson Family Household',
+        notification: 'email',
         email: 'bman@gmail.com',
         phone: '999-555-1212',
         twitter: '',
@@ -62,6 +65,7 @@ export class ReactiveDataService {
         lastName: 'Simpson',
         title: 'Guileless Huckster',
         company: 'Procter & Gamble',
+        notification: 'email',
         email: 'gramps@gmail.com',
         phone: '222-456-9822',
         twitter: '',
@@ -75,6 +79,7 @@ export class ReactiveDataService {
         lastName: 'Simpson',
         title: 'Brainchild',
         company: 'Simpson Family Household',
+        notification: 'email',
         email: 'lsimpson@gmail.com',
         phone: '123-456-7890',
         twitter: '',
@@ -88,6 +93,7 @@ export class ReactiveDataService {
         lastName: 'Simpson',
         title: 'Card Dealer',
         company: 'Golden Nugget Casino',
+        notification: 'email',
         email: 'maggien@gmail.com',
         phone: '456-789-0123',
         twitter: '',
@@ -147,7 +153,7 @@ export class ReactiveDataService {
   }
 
   removeSpeaker(id:number) {
-console.log('removeSpeaker', id);
+
     let speakers = JSON.parse(localStorage.getItem('reactiveSpeakers'));
 
     for(let i = 0; i < speakers.length; i++)

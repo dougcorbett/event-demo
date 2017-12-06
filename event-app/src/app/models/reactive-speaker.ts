@@ -8,8 +8,9 @@ export class ReactiveSpeaker{
     firstName:string;
     lastName:string;
     title?:string;
+    notification:string;
     email?:string;
-    phone:string;    
+    phone?:string;    
     company?:string;
     twitter?:string;
     photo?:string;

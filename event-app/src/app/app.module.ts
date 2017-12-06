@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Router, RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { AppComponent } from './app.component';
@@ -34,6 +34,7 @@ const appRoutes: Routes = [
   { pathMatch: 'full',  path: 'speakers/:id', component: SpeakerDetailComponent },
   { pathMatch: 'full',  path: 'speakers/:id/edit', component: SpeakerEditComponent },
   { pathMatch: 'full',  path: 'reactive-speakers', component: ReactiveSpeakerListComponent },
+  { pathMatch: 'full',  path: 'reactive-speakers/new', component: ReactiveSpeakerAddComponent },
   { pathMatch: 'full',  path: 'reactive-speakers/:id', component: ReactiveSpeakerDetailComponent },
   { pathMatch: 'full',  path: 'contact', component: ContactUsComponent },
   { pathMatch: 'full',  path: '**', component: PageNotFoundComponent }
@@ -62,6 +63,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     FlashMessagesModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
