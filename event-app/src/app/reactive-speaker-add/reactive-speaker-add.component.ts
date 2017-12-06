@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 //import { FormGroup, FormControl } from '@angular/forms';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
+
+import 'rxjs/add/operator/debounceTime'; 
 
 import { ReactiveDataService } from '../services/reactive-data.service';
 import { ReactiveSpeaker } from '../models/reactive-speaker';
 import { AbstractClassPart } from '@angular/compiler/src/output/output_ast';
 import { AbstractControl } from '@angular/forms/src/model';
-//import { Validators } from '@angular/forms/src/validators';
 
 @Component({
   selector: 'app-reactive-speaker-add',
@@ -20,12 +21,12 @@ export class ReactiveSpeakerAddComponent implements OnInit {
   speakerForm: FormGroup;
   speaker: ReactiveSpeaker = new ReactiveSpeaker();
   
-  // emailMessage: string;
+  emailMessage: string;
 
-  // private validationMessages = {
-  //   required: 'Please enter your email address.',
-  //   pattern: 'Please enter a valid email address.'
-  // }
+  private validationMessages = {
+    required: 'Please enter your email address.',
+    pattern: 'Please enter a valid email address.'
+  }
 
   constructor(
     private flashMessagesService: FlashMessagesService,
@@ -53,11 +54,12 @@ export class ReactiveSpeakerAddComponent implements OnInit {
       title: '',
       notification: ['email', [ Validators.required ]],
       email: ['', [ Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) ] ],
-      phone: '',
+      phone: ['', [ Validators.minLength(10) ] ],
       company: '',
       twitter: '',
       photo: 'generic.jpg',
-      biography: ''
+      biography: '',
+      sessions: this.fb.array( [ this.buildSession() ])
     });
 
     // alternate syntax - photo:{'generic.jpg', disabled:true }
@@ -76,16 +78,19 @@ export class ReactiveSpeakerAddComponent implements OnInit {
 
       this.speakerForm.get('notification').valueChanges.subscribe(value => this.setNotification(value));
 
-      // const emailCtrl = this.speakerForm.get('email');
-      // emailCtrl.valueChanges.subscribe(value => this.setMessage(emailCtrl));
+      const emailCtrl = this.speakerForm.get('email');
+      emailCtrl.valueChanges.debounceTime(1000).subscribe(value => this.setMessage(emailCtrl));
   }
 
-  // setMessage(c: AbstractControl): void {
-  //   this.emailMessage = '';
-  //   if ((c.touched || c.dirty) && c.errors) {
-  //     this.emailMessage = Object.keys(c.errors).map(key => this.validationMessages[key]).join(' ');
-  //   }
-  // }
+  get sessions(): FormArray{
+    return <FormArray>this.speakerForm.get('sessions');
+  }
+  setMessage(c: AbstractControl): void {
+    this.emailMessage = '';
+    if ((c.touched || c.dirty) && c.errors) {
+      this.emailMessage = Object.keys(c.errors).map(key => this.validationMessages[key]).join(' ');
+    }
+  }
 
   addTestData() {
     this.speakerForm.setValue({
@@ -98,8 +103,22 @@ export class ReactiveSpeakerAddComponent implements OnInit {
       company: 'Robin\'s Nest',
       twitter: 'selleckdaman',
       photo: 'generic.jpg',
-      biography: 'Candy canes cotton candy cupcake halvah dessert. Bonbon lollipop apple pie cake marshmallow jelly-o muffin. Candy jujubes marshmallow cheesecake brownie. Lollipop topping tart tootsie roll. Bonbon donut pie. Lemon drops candy canes carrot cake candy canes gummi bears. Cotton candy icing lollipop. Chocolate cake tootsie roll biscuit chocolate halvah soufflé marshmallow toffee. Sugar plum cookie caramels candy pudding cupcake brownie. Brownie bear claw liquorice chocolate cake tart topping. Liquorice gummi bears jelly beans. Jelly-o gummi bears cookie tiramisu sweet roll lollipop.'
+      biography: 'Candy canes cotton candy cupcake halvah dessert. Bonbon lollipop apple pie cake marshmallow jelly-o muffin. Candy jujubes marshmallow cheesecake brownie. Lollipop topping tart tootsie roll. Bonbon donut pie. Lemon drops candy canes carrot cake candy canes gummi bears. Cotton candy icing lollipop. Chocolate cake tootsie roll biscuit chocolate halvah soufflé marshmallow toffee. Sugar plum cookie caramels candy pudding cupcake brownie. Brownie bear claw liquorice chocolate cake tart topping. Liquorice gummi bears jelly beans. Jelly-o gummi bears cookie tiramisu sweet roll lollipop.',
+      sessions: [ 
+        { title: 'Angular Rox', description: 'wan that aprile for the sure the sorte' }
+     ]
     });
+  }
+
+  buildSession(): FormGroup {
+    return this.fb.group({
+              title: '',
+              description: ''
+            })
+  }
+
+  addSession(): void {
+    this.sessions.push(this.buildSession());
   }
 
   updateTestData() {
@@ -131,10 +150,13 @@ export class ReactiveSpeakerAddComponent implements OnInit {
     phoneCtrl.clearValidators();
     emailCtrl.clearValidators();
 
+    emailCtrl.setValidators([Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]);
+    phoneCtrl.setValidators([Validators.minLength(10)]);
+
     if (mode == 'email') {
-      emailCtrl.setValidators([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]);
+      emailCtrl.setValidators([Validators.required]);
     } else {
-      phoneCtrl.setValidators([Validators.required, Validators.minLength(10)]);
+      phoneCtrl.setValidators([Validators.required]);
     }
 
     emailCtrl.updateValueAndValidity();

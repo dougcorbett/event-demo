@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-6">
-    <a href="#" routerLink="/speakers" class="btn btn-link">
+    <a href="#" routerLink="/reactive-sspeakers" class="btn btn-link">
       <i class="fa fa-arrow-circle-o-left"></i> Back
     </a>
   </div>
@@ -74,15 +74,11 @@
         <div class="col-md-8">
           <input  type="text"
                   class="form-control"
-                  [ngClass]="{ 'is-invalid': speakerForm.get('email').errors?.required && speakerForm.get('email').touched || 
-                  speakerForm.get('email').errors?.pattern }"
+                  [ngClass]="{ 'is-invalid': emailMessage }"
                   formControlName="email"
-                  placeholder="Email (required)" />
-          <div *ngIf="speakerForm.get('email').errors?.required && speakerForm.get('email').touched" class="invalid-feedback">
-            Email is required.
-          </div>
-          <div *ngIf="speakerForm.get('email').errors?.pattern && speakerForm.get('email').touched" class="invalid-feedback">
-            Email is invalid.
+                  placeholder="Email" />
+          <div *ngIf="emailMessage" class="invalid-feedback">
+            {{ emailMessage }}
           </div>
         </div>
       </div>
@@ -96,7 +92,7 @@
                   [ngClass]="{ 'is-invalid': speakerForm.get('phone').errors?.required && speakerForm.get('phone').touched || 
                   speakerForm.get('phone').errors?.minlength }"
                   formControlName="phone"
-                  placeholder="Phone (required)" />
+                  placeholder="Phone" />
           <div *ngIf="speakerForm.get('phone').errors?.required && speakerForm.get('phone').touched" class="invalid-feedback">
             Phone is required.
           </div>
@@ -141,28 +137,40 @@
 
       <hr>
 
-      <!-- <div class="form-group">
-        <label class="col-md-2 control-label" for="sessionName">Session Name</label>
-        <div class="col-md-8">
-          <input  type="text"
-                  class="form-control"
-                  formControlName="sessionName"
-                  placeholder="Session Name" />
+      <button class="btn btn primary" 
+              type="button"
+              [disabled]="!sessions.valid"
+              (click)="addSession()">
+            Add Session
+      </button>
+
+      <div formArrayName="sessions" *ngFor="let session of sessions.controls; let i=index">
+        <div [formGroupName]="i">
+          <div class="form-group">
+            <label class="col-md-2 control-label" attr.for="{{ 'title' + i }}">Session Title</label>
+            <div class="col-md-8">
+              <input  type="text"
+                      class="form-control"
+                      id="{{ 'title' + i }}"
+                      formControlName="title"
+                      placeholder="Session Title" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label" attr.for="{{ 'description' + i }}">Session Description</label>
+            <div class="col-md-8">
+                <textarea class="form-control"
+                          id="{{ 'description' + i }}"
+                          formControlName="description"
+                          placeholder="Session Description"
+                          rows="5">
+
+                </textarea>
+            </div>
+          </div>
         </div>
       </div>
-
-
-      <div class="form-group">
-        <label class="col-md-2 control-label" for="sessionDescription">Session Description</label>
-        <div class="col-md-8">
-            <textarea class="form-control"
-                      formControlName="sessionDescription"
-                      placeholder="Session Description"
-                      rows="5">
-
-            </textarea>
-        </div>
-      </div> -->
 
       <input type="submit" value="Submit" class="btn btn-primary" [disabled]="!speakerForm.valid">
 
@@ -184,3 +192,4 @@
 <br>Touched: {{ speakerForm?.touched }}
 <br>Valid: {{ speakerForm?.valid }}
 <br>Value: {{ speakerForm?.value | json }}
+<br>Value: {{ sessions.get('0.title')?.value }}

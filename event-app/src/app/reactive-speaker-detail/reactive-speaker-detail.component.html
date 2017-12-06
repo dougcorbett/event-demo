@@ -18,8 +18,8 @@
         <br/><br />
         <p>{{ speaker.biography }}</p>
 
-        <div *ngIf="speaker.sessions.length > 0">
-            <h4>Session<span *ngIf="speaker.sessions.length > 1">s</span></h4>
+        <div *ngIf="speaker.sessions?.length > 0">
+            <h4>Session<span *ngIf="speaker.sessions?.length > 1">s</span></h4>
             <div *ngFor="let session of speaker.sessions">
                 <p>
                     <strong>Title:</strong> {{ session.title }}<br />
